@@ -1,0 +1,11 @@
+/* ------- Theme (easy to edit) ------- */
+:root{
+  --bg:#c1c1c1;/*background for all*/
+  --card:#ffffff;
+  /*--text:#040302;it is ussed for booking train text color*/
+  --muted:#dfdddd;
+  --primary:#408bc4;/*when you click butteon the the colour you will se */
+  --primary-hover:#6f9cd0;
+  --ring:rgba(212, 212, 213, 0.35);/*colour of the ring*/
+}
+/* ------- Theme (easy to edit) ------- */
