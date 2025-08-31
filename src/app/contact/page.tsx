@@ -5,6 +5,7 @@ import React, { useState } from "react";
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -12,10 +13,29 @@ export default function ContactPage() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  const validateEmail = (email: string) => {
+    return /\S+@\S+\.\S+/.test(email);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus("✅ Thank you! Your message has been submitted.");
-    setForm({ name: "", email: "", message: "" });
+
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+      setStatus("⚠️ Please fill in all fields.");
+      return;
+    }
+
+    if (!validateEmail(form.email)) {
+      setStatus("⚠️ Please enter a valid email address.");
+      return;
+    }
+
+    setLoading(true);
+    setTimeout(() => {
+      setStatus("✅ Thank you! Your message has been submitted.");
+      setForm({ name: "", email: "", message: "" });
+      setLoading(false);
+    }, 1500);
   };
 
   return (
@@ -60,6 +80,7 @@ export default function ContactPage() {
               value={form.name}
               onChange={handleChange}
               placeholder="Your Name"
+              aria-label="Your Name"
               className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-red-600 focus:outline-none"
               required
             />
@@ -69,6 +90,7 @@ export default function ContactPage() {
               value={form.email}
               onChange={handleChange}
               placeholder="Your Email"
+              aria-label="Your Email"
               className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-600 focus:outline-none"
               required
             />
@@ -77,19 +99,31 @@ export default function ContactPage() {
               value={form.message}
               onChange={handleChange}
               placeholder="Your Message"
+              aria-label="Your Message"
               rows={4}
               className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-red-600 focus:outline-none"
               required
             />
             <button
               type="submit"
-              className="w-full bg-red-700 text-white font-semibold px-6 py-3 rounded-lg hover:bg-red-800 transition"
+              disabled={loading}
+              className={`w-full font-semibold px-6 py-3 rounded-lg transition ${
+                loading
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-red-700 text-white hover:bg-red-800"
+              }`}
             >
-              Submit
+              {loading ? "Submitting..." : "Submit"}
             </button>
           </form>
           {status && (
-            <p className="mt-4 text-green-600 font-medium text-center">
+            <p
+              className={`mt-4 font-medium text-center ${
+                status.startsWith("✅")
+                  ? "text-green-600"
+                  : "text-red-600"
+              }`}
+            >
               {status}
             </p>
           )}
@@ -102,6 +136,7 @@ export default function ContactPage() {
             <a
               href="https://indianrailways.gov.in"
               target="_blank"
+              rel="noopener noreferrer"
               className="text-blue-700 font-medium hover:underline"
             >
               Official Website
@@ -109,6 +144,7 @@ export default function ContactPage() {
             <a
               href="https://railmadad.indianrailways.gov.in"
               target="_blank"
+              rel="noopener noreferrer"
               className="text-blue-700 font-medium hover:underline"
             >
               RailMadad
@@ -116,6 +152,7 @@ export default function ContactPage() {
             <a
               href="https://www.irctc.co.in"
               target="_blank"
+              rel="noopener noreferrer"
               className="text-blue-700 font-medium hover:underline"
             >
               IRCTC Portal
