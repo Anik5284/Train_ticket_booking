@@ -9,100 +9,108 @@
 
 /* Section */
 .section {
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
 }
 
 .section h2 {
-  font-size: 1.75rem;
+  font-size: 2rem;
   font-weight: 700;
   color: #004aad;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  text-align: center;
 }
 
 .section p {
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 1.05rem;
+  line-height: 1.7;
   color: #444;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
-/* Grid for services or highlights */
+/* Grid for services/highlights */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
-  margin-top: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
 }
 
 /* Card */
 .card {
   background: #fff;
-  border-radius: 0.75rem;
-  padding: 1.5rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  text-align: center;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
 }
 
 .card h3 {
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-weight: 600;
   color: #004aad;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .card p {
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: #555;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 /* Form */
 .form {
   background: #fff;
-  padding: 2rem;
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
+  padding: 2.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .input,
 .textarea {
   width: 100%;
   border: 1px solid #ccc;
-  border-radius: 0.5rem;
-  padding: 0.75rem;
-  margin-bottom: 1rem;
+  border-radius: 0.6rem;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1.25rem;
   font-size: 1rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .input:focus,
 .textarea:focus {
   border-color: #004aad;
-  box-shadow: 0 0 0 3px rgba(0, 74, 173, 0.2);
+  box-shadow: 0 0 0 4px rgba(0, 74, 173, 0.2);
   outline: none;
 }
 
 /* Call-to-action button */
 .button {
   display: inline-block;
-  background: #004aad;
+  background: linear-gradient(135deg, #004aad, #003580);
   color: white;
   font-weight: 600;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: 0.6rem;
   text-decoration: none;
-  transition: background 0.2s ease;
+  transition: background 0.25s ease, transform 0.2s ease;
   width: 100%;
   text-align: center;
+  cursor: pointer;
+  border: none;
 }
 
 .button:hover {
-  background: #003580;
+  background: linear-gradient(135deg, #003580, #00275c);
+  transform: translateY(-2px);
 }
 
 .button:disabled {
@@ -115,21 +123,38 @@
   text-align: center;
   margin-top: 1rem;
   font-weight: 500;
+  font-size: 1rem;
 }
 
 .status.success {
-  color: green;
+  color: #2e7d32; /* green */
 }
 
 .status.error {
-  color: red;
+  color: #d32f2f; /* red */
 }
 
 /* Image styling */
 .image {
-  border-radius: 0.75rem;
+  border-radius: 1rem;
   max-width: 100%;
   height: auto;
   margin-bottom: 1rem;
   object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.image:hover {
+  transform: scale(1.03);
+}
+
+/* Responsive tweaks */
+@media (min-width: 768px) {
+  .section h2 {
+    font-size: 2.25rem;
+  }
+
+  .form {
+    padding: 3rem;
+  }
 }
